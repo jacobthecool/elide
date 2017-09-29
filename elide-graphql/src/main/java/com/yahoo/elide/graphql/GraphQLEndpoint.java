@@ -79,7 +79,7 @@ public class GraphQLEndpoint {
             ObjectMapper mapper = elide.getMapper().getObjectMapper();
             JsonNode jsonDocument = mapper.readTree(graphQLDocument);
             final User user = tx.accessUser(getUser.apply(securityContext));
-            RequestScope requestScope = new RequestScope(path, null, tx, user, null, elide.getElideSettings());
+            RequestScope requestScope = new RequestScope(path, null, tx, user, null, elide.getElideSettings(), false);
             ExecutionResult result = api.execute(
                     jsonDocument.get("query").asText(),
                     jsonDocument.get("operationName").asText(),
